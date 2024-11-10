@@ -35,4 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
-/application-secret.yml
+
+# Ignore the application-secret.yml file
+src/main/resources/application-secret.yml
