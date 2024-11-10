@@ -1,0 +1,32 @@
+spring:
+  config:
+    import: application-secret.yml
+  application:
+    name: budgetManagement
+
+  datasource:
+    username: ${spring.config.import.spring.datasource.username}
+    password: ${spring.config.import.spring.datasource.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${spring.config.import.spring.datasource.url}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+
+server:
+  port: ${spring.config.import.server.port}
+  servlet:
+    context-path: /api
