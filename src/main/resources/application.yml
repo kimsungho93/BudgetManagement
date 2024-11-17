@@ -39,6 +39,10 @@ logging:
     org:
       hibernate:
         SQL: debug
+jwt:
+  secret-key: ${jwt.secret-key}
+  issuer: ${jwt.issuer}
+  expiration-time: ${jwt.expiration-time}
 
 server:
   port: ${server.port}
