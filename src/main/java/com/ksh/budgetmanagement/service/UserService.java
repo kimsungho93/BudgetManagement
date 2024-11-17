@@ -1,6 +1,8 @@
 package com.ksh.budgetmanagement.service;
 
 import com.ksh.budgetmanagement.controller.request.SignupRequest;
+import com.ksh.budgetmanagement.exception.CustomException;
+import com.ksh.budgetmanagement.exception.ErrorCode;
 import com.ksh.budgetmanagement.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,10 +17,10 @@ public class UserService {
 
     public void signup(SignupRequest request){
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new IllegalArgumentException("이미 가입된 이메일입니다.");
+            throw new CustomException(ErrorCode.ALREADY_USED_EMAIL);
         }
         if (userRepository.existsByNickname(request.getNickname())) {
-            throw new IllegalArgumentException("이미 사용중인 닉네임입니다.");
+            throw new CustomException(ErrorCode.ALREADY_USED_NICKNAME);
         }
 
         request.setPassword(passwordEncoder.encode(request.getPassword()));
